@@ -4,7 +4,6 @@ package client.domain.common.transaction;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
-import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TransactionAction {
@@ -17,6 +16,8 @@ public class TransactionAction {
 
     /*TODO Dynamically Unpack JSON Data */
 
+    private String data;
+    
     private String hex_data;
 
     public TransactionAction() {
@@ -46,7 +47,15 @@ public class TransactionAction {
     public void setAuthorization(List<TransactionAuthorization> authorization) {
         this.authorization = authorization;
     }
-
+    
+    public String getData() {
+    	return data;
+    }
+    
+    public void setData(String data) {
+    	this.data = data;
+    }
+    
     public String getHex_data() {
         return hex_data;
     }

@@ -4,6 +4,8 @@ import client.exception.EosApiErrorCode;
 import client.exception.EosApiError;
 import client.exception.EosApiException;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.logging.HttpLoggingInterceptor.Level;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -15,7 +17,7 @@ import java.lang.annotation.Annotation;
 public class EosApiServiceGenerator {
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
+    
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
                     .addConverterFactory(JacksonConverterFactory.create());
@@ -23,11 +25,16 @@ public class EosApiServiceGenerator {
     private static Retrofit retrofit;
 
     public static <S> S createService(Class<S> serviceClass, String baseUrl) {
+    	HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+    	interceptor.setLevel(Level.BODY);
 
+    	httpClient.addInterceptor(interceptor);
+    	    	
         builder.baseUrl(baseUrl);
         builder.client(httpClient.build());
         builder.addConverterFactory(JacksonConverterFactory.create());
         retrofit = builder.build();
+  
 
         return retrofit.create(serviceClass);
     }
