@@ -20,8 +20,8 @@ BLOCK_NUM=`echo $GET_INFO | jq '.last_irreversible_block_num'`
 GET_BLOCK=`$CHAIN/get_block --data '{"block_num_or_id":'$BLOCK_NUM'}'`
 BLOCK_PREFIX=`echo $GET_BLOCK | jq '.ref_block_prefix'`
 TIMESTAMP=`echo $GET_BLOCK | jq '.timestamp'`
-#EXPIRATION=`jq -n ''$TIMESTAMP' | strptime("%Y-%m-%dT%H:%M:%S.%3f") | mktime | . + 30 | todate | sub("Z"; .before)'`
-EXPIRATION='"2018-11-27T04:56:08.000"'
+EXPIRATION=`jq -n ''$TIMESTAMP' | strptime("%Y-%m-%dT%H:%M:%S.%3f") | mktime | . + 30 | todate | sub("Z"; .before)'`
+EXPIRATION='"2018-11-28T10:59:17"'
 echo "chain_id: $CHAIN_ID"
 echo "block_num: $BLOCK_NUM"
 echo "block_prefix: $BLOCK_PREFIX"
@@ -44,5 +44,5 @@ echo "PACKED_TX: $PACKED_TX"
 
 # 5. Call push transaction using packed transaction
 echo "\n-- Results of push_transaction --"
-$CHAIN/push_transaction --data ''"$PACKED_TX"''
+#$CHAIN/push_transaction --data ''"$PACKED_TX"''
 echo ""

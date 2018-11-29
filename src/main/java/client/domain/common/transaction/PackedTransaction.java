@@ -40,7 +40,7 @@ public class PackedTransaction {
         this.region = region;
     }
 
-    public String getMaxNetUsageWords() {
+    public String getmax_net_usage_words() {
         return maxNetUsageWords;
     }
 

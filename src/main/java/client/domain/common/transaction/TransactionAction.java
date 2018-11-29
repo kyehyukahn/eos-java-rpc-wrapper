@@ -55,7 +55,7 @@ public class TransactionAction {
     public void setData(String data) {
     	this.data = data;
     }
-    
+
     public String getHex_data() {
         return hex_data;
     }

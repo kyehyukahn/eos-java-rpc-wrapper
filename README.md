@@ -108,7 +108,7 @@ transactionAction.setData(data.getBinargs());
 transactionAction.setAuthorization(Collections.singletonList(transactionAuthorization));
 
 /* Create a transaction */
-PackedTransaction packedTransaction = new PackedTransaction();
+PackedTransaction packedTransaction = new Transaction();
 packedTransaction.setRefBlockPrefix(block.getRefBlockPrefix().toString());
 packedTransaction.setRefBlockNum(block.getBlockNum().toString());
 packedTransaction.setExpiration("2018-05-10T18:38:19");
@@ -117,7 +117,7 @@ packedTransaction.setMax_net_usage_words("0");
 packedTransaction.setActions(Collections.singletonList(transactionAction));
 
 /* Sign the Transaction */
-SignedPackedTransaction signedPackedTransaction = eosApiRestClient.signTransaction(packedTransaction, Collections.singletonList("EOS7LPJ7YnwYiEHbBLz96fNkt3kf6CDDdesV5EsWoc3u3DJy31V2y"), "chainId");
+SignedTransaction signedTransaction = eosApiRestClient.signTransaction(packedTransaction, Collections.singletonList("EOS7LPJ7YnwYiEHbBLz96fNkt3kf6CDDdesV5EsWoc3u3DJy31V2y"), "chainId");
 
 /* Push the transaction */
 PushedTransaction = eosApiRestClient.pushTransaction("none", signedPackedTransaction);
